@@ -1,0 +1,61 @@
+This is BibTeX, Version 0.99d (TeX Live 2022)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: main.aux
+A level-1 auxiliary file: data/abstract.aux
+A level-1 auxiliary file: data/chap01.aux
+A level-1 auxiliary file: data/chap02.aux
+A level-1 auxiliary file: data/chap03.aux
+A level-1 auxiliary file: data/chap04.aux
+A level-1 auxiliary file: data/acknowledgement.aux
+The style file: shuthesis.bst
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Database file #1: reference/refs.bib
+-- shuthesis.bst version 2.0 (2017/05/05) by ahhylau.
+-- See the "shuyhesis.pdf" manual for usage information.
+Warning--empty pages in life12060776
+Warning--The refdate in life12060776 is missing.
+
+Done.
+You've used 12 entries,
+            4579 wiz_defined-function locations,
+            1090 strings with 9566 characters,
+and the built_in function-call counts, 7548 in all, are:
+= -- 874
+> -- 88
+< -- 13
++ -- 48
+- -- 24
+* -- 603
+:= -- 802
+add.period$ -- 38
+call.type$ -- 12
+change.case$ -- 1
+chr.to.int$ -- 12
+cite$ -- 14
+duplicate$ -- 530
+empty$ -- 807
+format.name$ -- 24
+if$ -- 1877
+int.to.chr$ -- 0
+int.to.str$ -- 12
+missing$ -- 0
+newline$ -- 66
+num.names$ -- 12
+pop$ -- 44
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 2
+skip$ -- 236
+stack$ -- 0
+substring$ -- 907
+swap$ -- 158
+text.length$ -- 9
+text.prefix$ -- 0
+top$ -- 4
+type$ -- 152
+warning$ -- 2
+while$ -- 54
+width$ -- 14
+write$ -- 108
+(There were 2 warnings)
