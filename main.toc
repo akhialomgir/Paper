@@ -26,10 +26,10 @@
 \contentsline {subsection}{\numberline {\S 2.4.3}聚类+分类}{8}{subsection.2.4.3}%
 \contentsline {chapter}{\numberline {第3章}子宫肉瘤预后模型的数据提取}{9}{chapter.3}%
 \contentsline {section}{\numberline {\S 3.1}数据源介绍}{9}{section.3.1}%
-\contentsline {subsection}{\numberline {\S 3.1.1}SEER癌症数据库}{9}{subsection.3.1.1}%
-\contentsline {subsection}{\numberline {\S 3.1.2}医院验证数据库}{9}{subsection.3.1.2}%
-\contentsline {section}{\numberline {\S 3.2}数据字段对应编码与含义}{9}{section.3.2}%
-\contentsline {chapter}{\numberline {第4章}参考文献}{10}{chapter.4}%
-\contentsline {chapter}{致\hskip 1em\relax 谢}{11}{section*.5}%
-\contentsline {chapter}{参考文献}{12}{section*.7}%
-\contentsline {chapter}{\numberline {附录 A}经典不等式}{13}{appendix.A}%
+\contentsline {subsection}{\numberline {\S 3.1.1}SEER癌症数据库}{10}{subsection.3.1.1}%
+\contentsline {subsection}{\numberline {\S 3.1.2}医院验证数据库}{10}{subsection.3.1.2}%
+\contentsline {section}{\numberline {\S 3.2}数据字段对应编码与含义}{11}{section.3.2}%
+\contentsline {chapter}{\numberline {第4章}参考文献}{15}{chapter.4}%
+\contentsline {chapter}{致\hskip 1em\relax 谢}{16}{section*.9}%
+\contentsline {chapter}{参考文献}{17}{section*.11}%
+\contentsline {chapter}{\numberline {附录 A}经典不等式}{18}{appendix.A}%
