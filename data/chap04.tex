@@ -48,6 +48,10 @@
     \item 权限管理页面，权限管理页面提供了上述各页面的权限更改功能。其中只有管理员可以修改用户角色，而也只有管理员可以添加新的角色并赋予给用户。管理员可以给用户角色设置对每个页面能否访问。
 \end{enumerate}
 
+\section{变量选择}
+
+在研究过程中，笔者首先阅读了一些有关子宫肉瘤列线图与模型相关的文章\cite{novel_tool}，在这些文章中，年龄、种族、地区、婚姻状况、肿瘤大小、淋巴结状态、分期、分级、化疗、放疗都是比较常用的数据。然后在对SEER的数据集进行筛选后，我发现主要的库中婚姻状况等参数由于隐私原因被移除，而淋巴结的信息符合标准的过少，如果使用则会大大削减符合要求的数据数量，从而让训练集变得很小，所以考虑到这点后没有纳入。与医院老师们沟通后，笔者发现分期中的一些描述包含了淋巴结是否被侵犯的状况，而目前医院内主要使用化疗作为主要手段，放疗的数据较少所以没有考虑纳入，所以最后选择了选择了当前的变量。
+
 \section{生存分析}
 
 \subsection{数据概况}
@@ -73,7 +77,7 @@
 
 \subsection{Kaplan-Meier曲线绘制}
 
-由于下面使用的COX比例风险模型需要数据满足以下假设：
+由于下面使用的Cox比例风险模型需要数据满足以下假设：
 \begin{enumerate}
     \item 风险比值的对数与协变量之间呈线性关系
     \item 风险比值的对数与时间无关
@@ -101,8 +105,79 @@
 
 从图\ref{fig:km_site}中可以看到，四个原发部位的患者生存率从高到低的变化，从置信区间的的范围可以看到四者的数据量也存在差异。同时这些组间也存在线性比例关系，所以满足假设。
 
-\subsection{COX单因素分析}
+\subsection{Cox单因素分析}
 
-\subsection{COX多因素分析}
+Cox单因素分析是一种基于Cox比例风险模型的统计分析方法，它可以用于研究变量对于结果的影响。本文使用年龄、种族、原发部位、肿瘤大小、分期、化疗情况、分级建立Cox模型，并使用SEER数据集中的数据编码为合适格式，用编码后的结果训练。下列的表\ref{tab:cox_univar}是单因素模型的Cox分析结果。
+
+\begin{table}[htb]
+    \centering
+    \begin{minipage}[t]{0.8\linewidth} 
+    \caption[预测子宫肉瘤患者总生存率的单变量Cox分析]{预测子宫肉瘤患者总生存率的单变量Cox分析}
+    \label{tab:cox_univar}
+      \begin{tabularx}{\linewidth}{lXX}
+        \toprule[1.5pt]
+        {\heiti variable} & {\heiti exp(coef)} & {\heiti P value} \\\midrule[1pt]
+        \textbf{Age} \\
+        \textless45years \\
+        45-64years & 1.68 & \textless0.005 \\
+        $ \geq $65years & 4.35 & \textless0.005 \\\midrule[1pt]
+        \textbf{Race} \\
+        White \\
+        Black & 0.56 & \textless0.005 \\
+        Asian or Pacific Islander & 0.47 & \textless0.005 \\\midrule[1pt]
+        \textbf{Primary Site} \\
+        C54.1-Endometrium \\
+        C54.9-Corpus uteri & 1.67 & \textless0.005 \\
+        C54.3-Fundus uteri & 1.43 & \textless0.005 \\
+        C54.2-Myometrium & 3.24 & \textless0.005 \\\midrule[1pt]
+        \textbf{Tumor Size} \\
+        \textless50mm \\
+        $ \geq $50mm & 2.36 & \textless0.005 \\\midrule[1pt]
+        \textbf{Stage} \\
+        Localized \\
+        Regional & 2.72 & \textless0.005 \\
+        Distant & 10.94 & \textless0.005 \\\midrule[1pt]
+        \textbf{Chemotherapy} \\
+        Yes \\
+        No/Unknown & 0.41 & \textless0.005 \\\midrule[1pt]
+        \textbf{Grade} \\
+        Well differentiated; Grade I \\
+        Moderately differentiated; Grade II & 1.84 & \textless0.005 \\
+        Poorly differentiated; Grade III & 4.93 & \textless0.005 \\
+        Undifferentiated; anaplastic; Grade IV & 6.95 & \textless0.005 \\
+        \bottomrule[1.5pt]
+      \end{tabularx}
+    \end{minipage}
+  \end{table}
+
+coef是Cox中的回归系数beta，因此exp(coef)是Cox比例风险模型中的概率风险比。从结果中可以看到，计算得到的P值是用来评估同一变量的协变量对因变量的影响是否显著的参数。这里使用变量中的第一个协变量作为参照，分析其他协变量是与对照变量存在显著差异。一般在0.05以下则说明变量对于结果的影响较为显著，可以看到表中的结果都在该值之下，所以说明每个变量的不同值对于计算结果的影响较为显著，同时也验证了在Kaplan-Meier曲线中观察到的结果。
+
+\subsection{Cox多因素分析}
+
+Cox多因素分析也是一种基于Cox比例风险模型的统计分析方法，它可以用于研究多个不同的变量对于结果的影响。下列模型同样使用年龄、种族、原发部位、肿瘤大小、分期、化疗情况、分级建立Cox模型，并使用SEER数据集中的数据编码为合适格式，用编码后的结果训练。不同的是单因素将变量的每个值作为参数导入，而且同时只导入一个变量，而多因素分析则直接导入有不同值e多个变量。下列的表\ref{tab:cox_multivar}是多因素模型的Cox分析结果。
+
+\begin{table}[htb]
+    \centering
+    \begin{minipage}[t]{0.8\linewidth} 
+    \caption[预测子宫肉瘤患者总生存率的多变量Cox分析]{预测子宫肉瘤患者总生存率的多变量Cox分析}
+    \label{tab:cox_multivar}
+      \begin{tabularx}{\linewidth}{lXX}
+        \toprule[1.5pt]
+        {\heiti variable} & {\heiti exp(coef)} & {\heiti P value} \\\midrule[1pt]
+        \textbf{Age} & 2.23 & \textless0.005 \\
+        \textbf{Race} & 0.82 & \textless0.005 \\
+        \textbf{Primary Site} & 1.17 & \textless0.005 \\
+        \textbf{Tumor Size} & 1.52 & \textless0.005 \\
+        \textbf{Stage} & 2.47 & \textless0.005 \\
+        \textbf{Chemotherapy} & 1.29 & \textless0.005 \\
+        \textbf{Grade} & 1.56 & \textless0.005 \\
+        \bottomrule[1.5pt]
+      \end{tabularx}
+    \end{minipage}
+  \end{table}
+
+从结果中可以看到，计算得到的P值是用来评估多个变量对因变量的影响是否显著的参数。这里由于不是同一变量，所以不需要像单变量分析一样使用变量中的第一个协变量作为参照，分析其他协变量是与对照变量存在显著差异，相反，由于多个变量互不交叉，其是并不需要设置一个变量作为参照组。一般在0.05以下则说明变量对于结果的影响较为显著，可以看到表中的结果都在该值之下，所以说明每个变量对于计算结果的影响较为显著。这是在Kaplan-Meier曲线阶段无法观察到的多变量影响，这说明不但单个变量的不同值对于结果有比较大的影响，同时这个结果也可以在多变量模型中观察到，进一步验证了所选取的变量都有纳入价值。
 
 \subsection{生存分析结论}
+
+在上述对于患者数据库内数据分布的分析后，本文分别进行了Kaplan-Meier曲线的绘制和Cox单变量和多变量分析。其中对于数据的分布分析让我们对于数据库中的人群特征有了一定的了解，同时也为如何对变量类型为数值变量的变量进行了一定的划分，从而方便后续在Cox模型中导入并训练。而Kaplan-Meier曲线的绘制有两个目的，第一个目的是可以初步对于不同变量对结果的影响，从而让我们能够初步对于是否纳入该变量有一定的预判，在之前的工作中，笔者对于如何纳入变量有了较多考量，其中首先从论文中选择了一些常用的、对结果影响较大的变量，同时也选择了一些其他的未纳入过的变量，而这些变量中的一部分便因为KM曲线结果不符合模型标准或在这之前便发现变量内容与其他变量具有重复或冲突，所以最后没有纳入。而如果在这个阶段提前使用Kaplan-Meier曲线进行分析的话可能就能避免之前的重复劳动。Cox单因素模型分析选择了每个变量的不同值，将它们进行了拆分为二元变量并堆叠为组的过程，从而导入Cox单因素模型进行分析，在这个过程中，可以得到之前使用Kaplan-Meier曲线不能看到的的精确数值表示，这样便可以让我们对于数据是否能够纳入得到一个更明确地标准，而不是对于曲线进行经验判断。而多因素分析则解构了多个变量，分期它们结合起来对于结果的影响是否显著，这里与之前不同，如果只有单个变量只需要使用 log-rank 检验来确定因素之间的显著性关系即可，而多变量则需要使用比例风险回归模型才能确认影响，如果某一变量在 log-rank 检验中显示影响较大，在多变量回归中可能会因为其他变量占比较大从而反而显示不出较好的影响。而当前结果表明，目前采用的变量都对于结果有较为显著的影响，在之后的模型纳入与训练中可以作为参数使用。
