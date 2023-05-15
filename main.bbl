@@ -11,13 +11,27 @@
 Zhou~X, Nakamura~K, Sahara~N, et~al.
 Exploring and Identifying Prognostic Phenotypes of Patients with Heart Failure
   Guided by Explainable Machine Learning~[J/OL].
-Life, 2022, 12~(6).
+Life, 2022, 12~(6):  2--5.
 \url{https://www.mdpi.com/2075-1729/12/6/776}.
 
 \bibitem{novel_tool}
 Song~Z, Wang~Y, Zhang~D, et~al.
 A Novel Tool to Predict Early Death in Uterine Sarcoma Patients: A
   Surveillance, Epidemiology, and End Results-Based Study~[J].
-Frontiers in Oncology, 2020, 10.
+Frontiers in Oncology, 2020, 10:  3--6.
+
+\bibitem{cancers12102802}
+Du~M, Haag~D~G, Lynch~J~W, et~al.
+Comparison of the Tree-Based Machine Learning Algorithms to Cox Regression in
+  Predicting the Survival of Oral and Pharyngeal Cancers: Analyses Based on
+  SEER Database~[J/OL].
+Cancers, 2020, 12~(10):  3--7.
+\url{https://www.mdpi.com/2072-6694/12/10/2802}.
+
+\bibitem{cabrera2021survival}
+Cabrera~S, Bebia~V, Acosta~U, et~al.
+Survival outcomes and prognostic factors of endometrial stromal sarcoma and
+  undifferentiated uterine sarcoma~[J].
+Clinical and Translational Oncology, 2021, 23:  1210--1219.
 
 \end{thebibliography}
